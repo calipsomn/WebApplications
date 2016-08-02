@@ -9,13 +9,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Cargo4You.Models;
 
-namespace Cargo4You.Controllers
+namespace Cargo4You.Models
 {
     public class ParcelsController : ApiController
     {
-        private Cargo4YouContext db = new Cargo4YouContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Parcels
         public IQueryable<Parcel> GetParcels()

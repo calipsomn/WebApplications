@@ -17,5 +17,7 @@ namespace Cargo4You.Models
         public double Weight { get; set; }
                 
         public double Price { get; set; }
+
+        public bool Fragile { get; set; }
     }
 }

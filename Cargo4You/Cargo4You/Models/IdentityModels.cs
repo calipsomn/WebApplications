@@ -31,5 +31,7 @@ namespace Cargo4You.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Cargo4You.Models.Parcel> Parcels { get; set; }
     }
 }
