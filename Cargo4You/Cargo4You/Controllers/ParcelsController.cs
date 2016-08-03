@@ -118,5 +118,11 @@ namespace Cargo4You.Models
         {
             return db.Parcels.Count(e => e.Id == id) > 0;
         }
+
+        [ResponseType(typeof(double))]
+        public async Task<IHttpActionResult> GetPrice(Parcel parcel)
+        {
+            return Ok(1.0);
+        }
     }
 }
