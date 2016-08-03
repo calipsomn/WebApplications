@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cargo4You.Conversions;
+using Cargo4You.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,13 +19,15 @@ namespace Cargo4You.Models
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Parcels
-        public IQueryable<Parcel> GetParcels()
+        public IQueryable<ParcelDTO> GetParcels()
         {
-            return db.Parcels;
+            var parcels = from parcel in db.Parcels
+                          select DalToDtoConversion.GetParcelDTOFromDAL(parcel);
+            return parcels;
         }
 
         // GET: api/Parcels/5
-        [ResponseType(typeof(Parcel))]
+        [ResponseType(typeof(ParcelDTO))]
         public async Task<IHttpActionResult> GetParcel(int id)
         {
             Parcel parcel = await db.Parcels.FindAsync(id);
@@ -32,7 +36,7 @@ namespace Cargo4You.Models
                 return NotFound();
             }
 
-            return Ok(parcel);
+            return Ok(DalToDtoConversion.GetParcelDTOFromDAL(parcel));
         }
 
         // PUT: api/Parcels/5
@@ -48,7 +52,7 @@ namespace Cargo4You.Models
             {
                 return BadRequest();
             }
-
+            
             db.Entry(parcel).State = EntityState.Modified;
 
             try
@@ -81,8 +85,8 @@ namespace Cargo4You.Models
 
             db.Parcels.Add(parcel);
             await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = parcel.Id }, parcel);
+            var parcelDto = DalToDtoConversion.GetParcelDTOFromDAL(parcel);
+            return CreatedAtRoute("DefaultApi", new { id = parcel.Id }, parcelDto);
         }
 
         // DELETE: api/Parcels/5
