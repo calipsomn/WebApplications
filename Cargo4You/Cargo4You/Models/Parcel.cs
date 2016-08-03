@@ -11,13 +11,23 @@ namespace Cargo4You.Models
         public int Id { get; set; }
 
         [Required]
-        public double Dinensions { get; set; }
+        public double Weight { get; set; }
 
         [Required]
-        public double Weight { get; set; }
-                
+        public double Width { get; set; }
+
+        [Required]
+        public double Height { get; set; }
+
+        [Required]
+        public double Depth { get; set; }
+
         public double Price { get; set; }
 
         public bool Fragile { get; set; }
+
+        public bool Hazardous { get; set; }
+
+        public bool Perishable { get; set; }
     }
 }

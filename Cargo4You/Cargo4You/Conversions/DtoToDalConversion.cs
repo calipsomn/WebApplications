@@ -14,9 +14,14 @@ namespace Cargo4You.Conversions
             return new Parcel
             {
                 Id = parcelDto.Id,
-                Dinensions = parcelDto.Dinensions,
                 Fragile = parcelDto.Fragile,
-                Price = parcelDto.Price
+                Price = parcelDto.Price,
+                Depth = parcelDto.Depth,
+                Hazardous = parcelDto.Hazardous,
+                Height = parcelDto.Height,
+                Perishable = parcelDto.Perishable,
+                Width = parcelDto.Width,
+                Weight = parcelDto.Weight
             };
         }
     }
