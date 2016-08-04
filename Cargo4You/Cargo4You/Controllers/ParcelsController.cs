@@ -120,7 +120,7 @@ namespace Cargo4You.Models
         }
 
         [ResponseType(typeof(double))]
-        public async Task<IHttpActionResult> GetPrice(Parcel parcel)
+        public async Task<IHttpActionResult> GetPrice(double weight, double width, double depth, double height)
         {
             return Ok(1.0);
         }

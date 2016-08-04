@@ -30,7 +30,6 @@ namespace Cargo4You
             //    "~/Scripts/app/_run.js",
             //    "~/Scripts/app.js"));
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/knockout-{version}.js",
                         "~/Scripts/app.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
