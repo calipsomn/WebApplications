@@ -11,7 +11,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Services;
 
 namespace Cargo4You.Models
 {
@@ -120,7 +119,8 @@ namespace Cargo4You.Models
             return db.Parcels.Count(e => e.Id == id) > 0;
         }
 
-        [WebMethod]
+        [Route("api/Parcels/CalculatePrice")]
+        [ResponseType(typeof(double))]
         public double CalculatePrice(double weight, double width, double depth, double height)
         {
             return 1.0;

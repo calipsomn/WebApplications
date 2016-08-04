@@ -40,7 +40,8 @@
     //        }
     //    });
     this.ShowPrice = function (formElement) {
-        $.post(parcelsUri + 'CalculatePrice', { weight: this.Weght(), width: this.Width(), depth: this.Depth(), height: this.Height },
+        //$.post(parcelsUri + 'CalculatePrice', { weight: this.Weght, width: this.Width, depth: this.Depth, height: this.Height },
+        $.post(parcelsUri + 'CalculatePrice', { weight: 1.0, width: 1.0, depth: 1.0, height: 1.0 },
             function (returnedData) {
                 console.log(returnedData);
             });
