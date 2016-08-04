@@ -1,5 +1,5 @@
 ﻿function AppViewModel() {
-    this.error = ko.observable();
+    //this.error = ko.observable();
     var parcelsUri = '/api/parcels/';
     this.Weight = ko.observable(1.0);
     this.Width = ko.observable(1.0);
@@ -14,7 +14,7 @@
     //}, this);
     var parcelsUri = '/api/parcels/';
     function ajaxHelper(uri, method, data) {
-        this.error(''); // Clear error message
+        //this.error(''); // Clear error message
         return $.ajax({
             type: method,
             url: uri,
@@ -22,7 +22,7 @@
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            this.error(errorThrown);
+            //this.error(errorThrown);
         });
     };
     //this.ShowPrice = function (formElement) {
@@ -39,13 +39,25 @@
     //            this.Price(0);
     //        }
     //    });
-    this.ShowPrice = function (formElement) {
-        //$.post(parcelsUri + 'CalculatePrice', { weight: this.Weght, width: this.Width, depth: this.Depth, height: this.Height },
-        $.post(parcelsUri + 'CalculatePrice', { weight: 1.0, width: 1.0, depth: 1.0, height: 1.0 },
-            function (returnedData) {
-                console.log(returnedData);
-            });
-    }
+    //this.ShowPrice = function (formElement) {
+    //    //$.post(parcelsUri + 'CalculatePrice', { weight: this.Weght, width: this.Width, depth: this.Depth, height: this.Height },
+    //    $.post(parcelsUri + 'CalculatePrice', { weight: 1.0, width: 1.0, depth: 1.0, height: 1.0 },
+    //        function (returnedData) {
+    //            console.log(returnedData);
+    //        });
+    //}
+    this.ShowPrice=function (formElement) {
+                var parcel = {
+                    weight: 1.0,
+                    width: 1.0,
+                    height: 1.0,
+                    depth: 1.0
+                };
+
+                ajaxHelper('/api/parcels/CalculatePrice', 'POST', parcel).done(function (item) {
+                    this.Price(item);
+                });
+            };
 };
 ko.applyBindings(new AppViewModel());
 
