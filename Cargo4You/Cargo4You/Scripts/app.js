@@ -21,6 +21,7 @@
     this.Hazardous = ko.observable();
     this.Perishable = ko.observable();
     this.Price = ko.computed(function () {
+        //$.get(parcelsUri + 'Price', { weight: this.Weight, width: this.Width, depth: this.Depth, height: this.Height },
         $.get(parcelsUri + 'Price', { weight: this.Weight, width: this.Width, depth: this.Depth, height: this.Height },
     function (returnedData) {
         return returnedData;
