@@ -25,24 +25,25 @@
             this.error(errorThrown);
         });
     };
+    //this.ShowPrice = function (formElement) {
+    //    $.ajax({
+    //        url: parcelsUri + 'CalculatePrice',
+    //        type: 'POST',
+    //        data: JSON.stringify({ weight: this.Weght(), width: this.Width(), depth: this.Depth(), height: this.Height }),
+    //        dataType: 'json',
+    //        contentType: 'application/json; charset=utf-8',
+    //        success: function (response) {
+    //            this.Price(response);
+    //        },
+    //        error: function () {
+    //            this.Price(0);
+    //        }
+    //    });
     this.ShowPrice = function (formElement) {
-        $.ajax({
-            url: parcelsUri + 'CalculatePrice',
-            type: 'POST',
-            data: JSON.stringify({ weight: 1.0, width: 1.0, depth: 1.0, height: 1.0 }),
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            success: function (response) {
-                this.Price(response);
-            },
-            error: function () {
-                this.Price(0);
-            }
-        });
-        //$.post(parcelsUri + 'CalculatePrice', { weight: this.Weght(), width: this.Width(), depth: this.Depth(), height: this.Height },
-        //    function (returnedData) {
-        //        console.log(returnedData);
-        //    });
+        $.post(parcelsUri + 'CalculatePrice', { weight: this.Weght(), width: this.Width(), depth: this.Depth(), height: this.Height },
+            function (returnedData) {
+                console.log(returnedData);
+            });
     }
 };
 ko.applyBindings(new AppViewModel());
