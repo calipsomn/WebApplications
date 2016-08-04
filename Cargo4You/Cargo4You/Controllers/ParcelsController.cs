@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Services;
 
 namespace Cargo4You.Models
 {
@@ -119,10 +120,10 @@ namespace Cargo4You.Models
             return db.Parcels.Count(e => e.Id == id) > 0;
         }
 
-        [ResponseType(typeof(double))]
-        public async Task<IHttpActionResult> GetPrice(string weight, string width, string depth, string height)
+        [WebMethod]
+        public double CalculatePrice(double weight, double width, double depth, double height)
         {
-            return Ok(1.0);
+            return 1.0;
         }
     }
 }

@@ -1,35 +1,49 @@
 ﻿function AppViewModel() {
-    //this.error = ko.observable();
+    this.error = ko.observable();
     var parcelsUri = '/api/parcels/';
-        function ajaxHelper(uri, method, data) {
-            //this.error(''); // Clear error message
-            return $.ajax({
-                type: method,
-                url: uri,
-                dataType: 'json',
-                contentType: 'application/json',
-                data: data ? JSON.stringify(data) : null
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                //this.error(errorThrown);
-            });
-        };
-    this.Weight = ko.observable();
-    this.Width = ko.observable();
-    this.Height = ko.observable();
-    this.Depth = ko.observable();
+    this.Weight = ko.observable(1.0);
+    this.Width = ko.observable(1.0);
+    this.Height = ko.observable(1.0);
+    this.Depth = ko.observable(1.0);
     this.Fragile = ko.observable();
     this.Hazardous = ko.observable();
     this.Perishable = ko.observable();
-    this.Price = ko.computed(function () {
-        //$.get(parcelsUri + 'Price', { weight: this.Weight, width: this.Width, depth: this.Depth, height: this.Height },
-        $.get(parcelsUri + 'Price', { weight: this.Weight, width: this.Width, depth: this.Depth, height: this.Height },
-    function (returnedData) {
-        return returnedData;
-    });
-    }, this);
+    this.Price = ko.observable();
     //this.Price = ko.computed(function () {
     //    return this.Weight() * 2;
     //}, this);
+    var parcelsUri = '/api/parcels/';
+    function ajaxHelper(uri, method, data) {
+        this.error(''); // Clear error message
+        return $.ajax({
+            type: method,
+            url: uri,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: data ? JSON.stringify(data) : null
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            this.error(errorThrown);
+        });
+    };
+    this.ShowPrice = function (formElement) {
+        $.ajax({
+            url: parcelsUri + 'CalculatePrice',
+            type: 'POST',
+            data: JSON.stringify({ weight: 1.0, width: 1.0, depth: 1.0, height: 1.0 }),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                this.Price(response);
+            },
+            error: function () {
+                this.Price(0);
+            }
+        });
+        //$.post(parcelsUri + 'CalculatePrice', { weight: this.Weght(), width: this.Width(), depth: this.Depth(), height: this.Height },
+        //    function (returnedData) {
+        //        console.log(returnedData);
+        //    });
+    }
 };
 ko.applyBindings(new AppViewModel());
 

@@ -1,5 +1,6 @@
 ﻿http://www.asp.net/web-api/overview/data/using-web-api-with-entity-framework/part-1
 http://www.intercargo.com/
+http://www.codeproject.com/Tips/678138/MVC-using-Web-API-and-JQuery-to-GET-or-POST-Data
 1
 1.0 The Test
 We would like to explore your practical software development skills in a short exercise.
