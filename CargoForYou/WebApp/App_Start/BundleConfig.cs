@@ -26,6 +26,15 @@ namespace WebApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/cargoApp").Include(
+                        "~/Scripts/jquery-{version}.js", "~/Scripts/jquery.validate*",
+                        "~/Scripts/jquery-ui-{version}.js", "~/Scripts/bootstrap.js",
+                        "~/Scripts/respond.js", "~/Scripts/knockout-{version}.js",
+                        "~/Scripts/knockout.custom.js",
+                        "~/Scripts/ViewModels/ParcelViewModel.js"));
+
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

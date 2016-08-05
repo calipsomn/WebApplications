@@ -29,5 +29,7 @@ namespace WebApp.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Parcel> Parcels { get; set; }
     }
 }
