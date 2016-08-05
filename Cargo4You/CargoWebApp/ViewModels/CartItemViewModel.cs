@@ -19,7 +19,7 @@ namespace CargoWebApp.ViewModels
         public int ParcelId { get; set; }
 
         [JsonProperty(PropertyName = "quantity")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Quantity must be greater than 0")]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Quantity must be greater than 0!")]
         public int Quantity { get; set; }
 
         [JsonProperty(PropertyName = "parcel")]

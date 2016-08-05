@@ -12,20 +12,18 @@ namespace CargoWebApp.Models
         [Index(IsUnique = true)]
         public int Id { get; set; }
 
+        public int UserId { get; set; }
+
         [Required]
-        [Range(0.01, 200)]
         public double Weight { get; set; }
 
         [Required]
-        [Range(0.01, 500)]
         public double Width { get; set; }
 
         [Required]
-        [Range(0.01, 500)]
         public double Height { get; set; }
 
         [Required]
-        [Range(0.01, 500)]
         public double Depth { get; set; }
 
         public double Price { get; set; }

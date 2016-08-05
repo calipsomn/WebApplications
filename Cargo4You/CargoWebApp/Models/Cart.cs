@@ -10,6 +10,7 @@ namespace CargoWebApp.Models
     public class Cart
     {
         public int Id { get; set; }
+
         [Index(IsUnique = true)]
         [StringLength(255)]
         public string SessionId { get; set; }

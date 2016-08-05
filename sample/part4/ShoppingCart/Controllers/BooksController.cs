@@ -1,4 +1,5 @@
-﻿using ShoppingCart.Models;
+﻿using AutoMapper;
+using ShoppingCart.Models;
 using ShoppingCart.Services;
 using ShoppingCart.ViewModels;
 using System;
@@ -11,12 +12,18 @@ namespace ShoppingCart.Controllers
     public class BooksController : Controller
     {
         private readonly BookService _bookService = new BookService();
+        MapperConfiguration config;
+        IMapper mapper;
 
         public BooksController()
         {
-            AutoMapper.Mapper.CreateMap<Book, BookViewModel>();
-            AutoMapper.Mapper.CreateMap<Author, AuthorViewModel>();
-            AutoMapper.Mapper.CreateMap<Category, CategoryViewModel>();
+            config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Book, BookViewModel>();
+                cfg.CreateMap<Author, AuthorViewModel>();
+                cfg.CreateMap<Category, CategoryViewModel>();
+            });
+            mapper = config.CreateMapper();
         }
 
         // GET: Books
@@ -27,7 +34,7 @@ namespace ShoppingCart.Controllers
             ViewBag.SelectedCategoryId = categoryId;
 
             return View(
-                AutoMapper.Mapper.Map<List<Book>, List<BookViewModel>>(books)
+                mapper.Map<List<Book>, List<BookViewModel>>(books)
             );
         }
 
@@ -36,7 +43,7 @@ namespace ShoppingCart.Controllers
             var book = _bookService.GetById(id);
 
             return View(
-                AutoMapper.Mapper.Map<Book, BookViewModel>(book)
+               mapper.Map<Book, BookViewModel>(book)
             );
         }
 
@@ -46,7 +53,7 @@ namespace ShoppingCart.Controllers
             var books = _bookService.GetFeatured();
 
             return PartialView(
-                AutoMapper.Mapper.Map<List<Book>, List<BookViewModel>>(books)
+               mapper.Map<List<Book>, List<BookViewModel>>(books)
             );
         }
 

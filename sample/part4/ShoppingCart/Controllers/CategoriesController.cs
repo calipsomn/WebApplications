@@ -1,4 +1,5 @@
-﻿using ShoppingCart.Models;
+﻿using AutoMapper;
+using ShoppingCart.Models;
 using ShoppingCart.Services;
 using ShoppingCart.ViewModels;
 using System.Collections.Generic;
@@ -10,18 +11,22 @@ namespace ShoppingCart.Controllers
     public class CategoriesController : Controller
     {
         private readonly CategoryService _categoryService = new CategoryService();
+        MapperConfiguration config;
+        IMapper mapper;
 
         [ChildActionOnly]
         public PartialViewResult Menu(int selectedCategoryId)
         {
             var categories = _categoryService.Get();
-
-            AutoMapper.Mapper.CreateMap<Category, CategoryViewModel>();
-
+            config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Category, CategoryViewModel>();
+            });
+            mapper = config.CreateMapper();
             ViewBag.SelectedCategoryId = selectedCategoryId;
 
             return PartialView(
-                AutoMapper.Mapper.Map<List<Category>, List<CategoryViewModel>>(categories)
+                mapper.Map<List<Category>, List<CategoryViewModel>>(categories)
             );
         }
 

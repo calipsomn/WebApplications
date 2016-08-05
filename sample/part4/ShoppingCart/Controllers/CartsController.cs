@@ -1,4 +1,5 @@
-﻿using ShoppingCart.Models;
+﻿using AutoMapper;
+using ShoppingCart.Models;
 using ShoppingCart.Services;
 using ShoppingCart.ViewModels;
 using System;
@@ -12,14 +13,20 @@ namespace ShoppingCart.Controllers
     public class CartsController : Controller
     {
         private readonly CartService _cartService = new CartService();
+        MapperConfiguration config;
+        IMapper mapper;
 
         public CartsController()
         {
-            AutoMapper.Mapper.CreateMap<Cart, CartViewModel>();
-            AutoMapper.Mapper.CreateMap<CartItem, CartItemViewModel>();
-            AutoMapper.Mapper.CreateMap<Book, BookViewModel>();
-            AutoMapper.Mapper.CreateMap<Author, AuthorViewModel>();
-            AutoMapper.Mapper.CreateMap<Category, CategoryViewModel>();
+            config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Cart, CartViewModel>();
+                cfg.CreateMap<CartItem, CartItemViewModel>();
+                cfg.CreateMap<Book, BookViewModel>();
+                cfg.CreateMap<Author, AuthorViewModel>();
+                cfg.CreateMap<Category, CategoryViewModel>();
+            });
+            mapper = config.CreateMapper();
         }
 
         // GET: Carts
@@ -28,7 +35,7 @@ namespace ShoppingCart.Controllers
             var cart = _cartService.GetBySessionId(HttpContext.Session.SessionID);
 
             return View(
-                AutoMapper.Mapper.Map<Cart, CartViewModel>(cart)
+                mapper.Map<Cart, CartViewModel>(cart)
             );
         }
 
@@ -38,7 +45,7 @@ namespace ShoppingCart.Controllers
             var cart = _cartService.GetBySessionId(HttpContext.Session.SessionID);
 
             return PartialView(
-                AutoMapper.Mapper.Map<Cart, CartViewModel>(cart)
+                mapper.Map<Cart, CartViewModel>(cart)
             );
         }
 

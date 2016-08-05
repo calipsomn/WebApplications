@@ -1,4 +1,5 @@
-﻿using ShoppingCart.Models;
+﻿using AutoMapper;
+using ShoppingCart.Models;
 using ShoppingCart.Services;
 using ShoppingCart.ViewModels;
 using System;
@@ -13,36 +14,41 @@ namespace ShoppingCart.Controllers.Api
     public class CartItemsController : ApiController
     {
         private readonly CartItemService _cartItemService = new CartItemService();
+        MapperConfiguration config;
+        IMapper mapper;
 
         public CartItemsController()
         {
-            AutoMapper.Mapper.CreateMap<Cart, CartViewModel>();
-            AutoMapper.Mapper.CreateMap<CartItem, CartItemViewModel>();
-            AutoMapper.Mapper.CreateMap<Book, BookViewModel>();
-
-            AutoMapper.Mapper.CreateMap<CartItemViewModel, CartItem>();
-            AutoMapper.Mapper.CreateMap<BookViewModel, Book>();
-            AutoMapper.Mapper.CreateMap<AuthorViewModel, Author>();
-            AutoMapper.Mapper.CreateMap<CategoryViewModel, Category>();
+            config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Cart, CartViewModel>();
+                cfg.CreateMap<CartItem, CartItemViewModel>();
+                cfg.CreateMap<Book, BookViewModel>();
+                cfg.CreateMap<CartItemViewModel, CartItem>();
+                cfg.CreateMap<BookViewModel, Book>();
+                cfg.CreateMap<AuthorViewModel, Author>();
+                cfg.CreateMap<CategoryViewModel, Category>();
+            });
+            mapper = config.CreateMapper();
         }
 
         public CartItemViewModel Post(CartItemViewModel cartItem)
         {
-            var newCartItem = _cartItemService.AddToCart(AutoMapper.Mapper.Map<CartItemViewModel, CartItem>(cartItem));
+            var newCartItem = _cartItemService.AddToCart(mapper.Map<CartItemViewModel, CartItem>(cartItem));
 
-            return AutoMapper.Mapper.Map<CartItem, CartItemViewModel>(newCartItem);
+            return mapper.Map<CartItem, CartItemViewModel>(newCartItem);
         }
 
         public CartItemViewModel Put(CartItemViewModel cartItem)
         {
-            _cartItemService.UpdateCartItem(AutoMapper.Mapper.Map<CartItemViewModel, CartItem>(cartItem));
+            _cartItemService.UpdateCartItem(mapper.Map<CartItemViewModel, CartItem>(cartItem));
 
             return cartItem;
         }
 
         public CartItemViewModel Delete(CartItemViewModel cartItem)
         {
-            _cartItemService.DeleteCartItem(AutoMapper.Mapper.Map<CartItemViewModel, CartItem>(cartItem));
+            _cartItemService.DeleteCartItem(mapper.Map<CartItemViewModel, CartItem>(cartItem));
 
             return cartItem;
         }
