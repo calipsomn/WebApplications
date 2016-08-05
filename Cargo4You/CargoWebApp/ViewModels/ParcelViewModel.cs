@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CargoWebApp.StaticHelpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,13 @@ namespace CargoWebApp.ViewModels
         public double Depth { get; set; }
 
         [JsonProperty(PropertyName = "price")]
-        public double Price { get; set; }
+        public double Price
+        {
+            get
+            {
+                return ParcelHelpers.CalculatePrice(Weight, Width, Depth, Height);
+            }
+        }
 
         [JsonProperty(PropertyName = "fragile")]
         public bool Fragile { get; set; }
