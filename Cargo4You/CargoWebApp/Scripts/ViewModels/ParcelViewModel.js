@@ -13,6 +13,6 @@ $("#Depth").on("change paste keyup", function () {
 function calculatePrice() {
     $.get("/Parcels/CalculateParcelPrice", { weight: $("#Weight").val(), width: $("#Width").val(), depth: $("#Depth").val(), height: $("#Height").val() },
      function (returnedData){
-         $("#Price").val(returnedData)+'€';
+         $("#Price").val(returnedData);
      })
 }

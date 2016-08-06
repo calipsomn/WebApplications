@@ -34,6 +34,7 @@ namespace CargoWebApp.ViewModels
         [Range(0.01, 500, ErrorMessage = "The depth of the parcel must be at least 10 millimeters and no more tham 5 meters!")]
         public double Depth { get; set; }
 
+        [DisplayName("Price (€)")]
         [JsonProperty(PropertyName = "price")]
         public double Price
         {

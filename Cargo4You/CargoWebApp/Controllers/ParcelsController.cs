@@ -12,6 +12,7 @@ using CargoWebApp.Models;
 using AutoMapper;
 using CargoWebApp.ViewModels;
 using CargoWebApp.StaticHelpers;
+using Microsoft.AspNet.Identity;
 
 namespace CargoWebApp.Controllers
 {
@@ -34,7 +35,8 @@ namespace CargoWebApp.Controllers
         // GET: Parcels
         public async Task<ActionResult> Index()
         {
-            return View(mapper.Map<List<Parcel>, List<ParcelViewModel>>(await db.Parcels.ToListAsync()));
+            var parcels = await db.Parcels.Where(parcel => parcel.User.UserName == User.Identity.Name).ToListAsync();
+            return View(mapper.Map<List<Parcel>, List<ParcelViewModel>>(parcels));
         }
 
         // GET: Parcels/Details/5
@@ -68,7 +70,9 @@ namespace CargoWebApp.Controllers
             if (ModelState.IsValid)
             {
                 var parcel = mapper.Map<ParcelViewModel, Parcel>(parcelViewModel);
+                var user = db.Users.First(u => u.UserName == User.Identity.Name);
                 parcel.Price = ParcelHelpers.CalculatePrice(parcel.Weight, parcel.Width, parcel.Depth, parcel.Height);
+                parcel.User = user;
                 db.Parcels.Add(parcel);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
