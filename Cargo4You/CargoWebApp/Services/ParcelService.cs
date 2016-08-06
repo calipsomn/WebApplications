@@ -28,7 +28,7 @@ namespace CargoWebApp.Services
 
             if (null == parcel)
                 throw new System.Data.Entity.Core.ObjectNotFoundException
-                    (string.Format("Unable to find book with id {0}", id));
+                    (string.Format("Unable to find parcel with id {0}", id));
 
             return parcel;
         }

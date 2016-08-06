@@ -143,5 +143,10 @@ namespace CargoWebApp.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        public double CalculateParcelPrice(double weight, double width, double depth, double height)
+        {
+            return ParcelHelpers.CalculatePrice(weight, width, depth, height);
+        }
     }
 }
