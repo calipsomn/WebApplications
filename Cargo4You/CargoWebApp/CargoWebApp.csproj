@@ -216,6 +216,7 @@
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParcelsController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="Enums\StatusType.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
@@ -322,6 +323,10 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewModels\CartDetailViewModel.js" />
+    <Content Include="Scripts\ViewModels\CartItemViewModel.js" />
+    <Content Include="Scripts\ViewModels\CartSummaryViewModel.js" />
+    <Content Include="Scripts\ViewModels\ParcelDetailViewModel.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -358,10 +363,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Carts\Summary.cshtml" />
+    <Content Include="Views\Carts\View.cshtml" />
+    <Content Include="Views\Parcels\Delete.cshtml" />
+    <Content Include="Views\Parcels\Create.cshtml" />
+    <Content Include="Views\Parcels\Edit.cshtml" />
+    <Content Include="Views\Parcels\Details.cshtml" />
+    <Content Include="Views\Parcels\List.cshtml" />
+    <Content Include="Views\Parcels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Parcels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

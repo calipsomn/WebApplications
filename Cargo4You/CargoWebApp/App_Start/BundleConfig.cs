@@ -32,7 +32,7 @@ namespace CargoWebApp
                        "~/Scripts/jquery-ui-{version}.js", "~/Scripts/bootstrap.js",
                        "~/Scripts/respond.js", "~/Scripts/knockout-{version}.js",
                        "~/Scripts/knockout.custom.js",
-                       "~/Scripts/ViewModels/ParcelViewModel.js"));
+                       "~/Scripts/ViewModels/CartSummaryViewModel.js"));
 
             BundleTable.EnableOptimizations = false;
         }

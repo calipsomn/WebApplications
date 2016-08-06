@@ -25,5 +25,7 @@ namespace CargoWebApp.DAL
         public DbSet<CartItem> CartItems { get; set; }
 
         public System.Data.Entity.DbSet<CargoWebApp.ViewModels.CartViewModel> CartViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<CargoWebApp.ViewModels.ParcelViewModel> ParcelViewModels { get; set; }
     }
 }
