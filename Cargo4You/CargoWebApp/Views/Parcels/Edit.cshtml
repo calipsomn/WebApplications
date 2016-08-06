@@ -21,7 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control", id = "Weight" } })
                 @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control", id = "Width" } })
                 @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control", id = "Height" } })
                 @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Depth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Depth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Depth, new { htmlAttributes = new { @class = "form-control", id = "Depth" } })
                 @Html.ValidationMessageFor(model => model.Depth, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -101,5 +101,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval", "/Scripts/ViewModels/ParcelViewModel.js")
 }
