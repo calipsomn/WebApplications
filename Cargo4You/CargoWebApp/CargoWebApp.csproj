@@ -327,6 +327,7 @@
     <Content Include="Scripts\ViewModels\CartItemViewModel.js" />
     <Content Include="Scripts\ViewModels\CartSummaryViewModel.js" />
     <Content Include="Scripts\ViewModels\ParcelDetailViewModel.js" />
+    <Content Include="Scripts\ViewModels\ParcelViewModel.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -370,6 +371,7 @@
     <Content Include="Views\Parcels\Details.cshtml" />
     <Content Include="Views\Parcels\List.cshtml" />
     <Content Include="Views\Parcels\Index.cshtml" />
+    <Content Include="Views\Shared\_CartItemForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

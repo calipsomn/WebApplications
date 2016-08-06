@@ -11,6 +11,7 @@ using CargoWebApp.DAL;
 using CargoWebApp.Models;
 using AutoMapper;
 using CargoWebApp.ViewModels;
+using CargoWebApp.StaticHelpers;
 
 namespace CargoWebApp.Controllers
 {
@@ -62,16 +63,18 @@ namespace CargoWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,UserId,Weight,Width,Height,Depth,Price,Fragile,Hazardous,Perishable")] ParcelViewModel parcel)
+        public async Task<ActionResult> Create([Bind(Include = "Id,UserId,Weight,Width,Height,Depth,Fragile,Hazardous,Perishable")] ParcelViewModel parcelViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Parcels.Add(mapper.Map<ParcelViewModel, Parcel>(parcel));
+                var parcel = mapper.Map<ParcelViewModel, Parcel>(parcelViewModel);
+                parcel.Price = ParcelHelpers.CalculatePrice(parcel.Weight, parcel.Width, parcel.Depth, parcel.Height);
+                db.Parcels.Add(parcel);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(parcel);
+            return View(parcelViewModel);
         }
 
         // GET: Parcels/Edit/5

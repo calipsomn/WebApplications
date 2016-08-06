@@ -16,3 +16,4 @@
 /// <reference path="viewmodels/cartitemviewmodel.js" />
 /// <reference path="viewmodels/cartsummaryviewmodel.js" />
 /// <reference path="viewmodels/parceldetailviewmodel.js" />
+/// <reference path="viewmodels/parcelviewmodel.js" />
