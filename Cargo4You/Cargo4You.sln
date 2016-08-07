@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoWebApp", "CargoWebApp\CargoWebApp.csproj", "{0DB901F9-5C43-4EB2-AB7D-A8E9987AFB4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{E6774DD3-E6FC-4BC7-9914-7C64CF625A51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppTests", "WebApp\WebAppTests.csproj", "{E6774DD3-E6FC-4BC7-9914-7C64CF625A51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

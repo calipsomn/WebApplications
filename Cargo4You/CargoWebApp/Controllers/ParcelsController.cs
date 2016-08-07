@@ -32,6 +32,8 @@ namespace CargoWebApp.Controllers
             {
                 cfg.CreateMap<Parcel, ParcelViewModel>();
                 cfg.CreateMap<ParcelViewModel, Parcel>();
+                cfg.CreateMap<Cart, CartViewModel>();
+                cfg.CreateMap<CartItem, CartItemViewModel>();
             });
             mapper = config.CreateMapper();
         }
@@ -89,6 +91,21 @@ namespace CargoWebApp.Controllers
             }
 
             return View(parcelViewModel);
+        }
+        
+        public async Task<ActionResult> AddToCart(int id)
+        {
+            var parcel = await db.Parcels.FindAsync(id);
+            var cart = cartService.GetBySessionId(HttpContext.Session.SessionID);
+            CartItemsController cartItemsController = new CartItemsController();
+            var cartItemViewModel = cartItemsController.Post(new CartItemViewModel
+            {
+                ParcelId = parcel.Id,
+                Quantity = 1,
+                CartId = cart.Id
+            });
+
+            return View("~/Views/Carts/Index.cshtml");
         }
 
         // GET: Parcels/Edit/5

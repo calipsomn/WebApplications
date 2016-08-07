@@ -11,7 +11,7 @@
     @Html.ActionLink("Create Parcel", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr id="parcelDetails">
         <th>
             @Html.DisplayNameFor(model => model.Weight)
         </th>
@@ -68,7 +68,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+            @Html.ActionLink("Add to Cart", "AddToCart", new { id = item.Id })
         </td>
     </tr>
 }

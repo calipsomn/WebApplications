@@ -2,12 +2,11 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
-<div>
+<div  id="parcelDetails">
     <h4>Parcel</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -77,8 +76,24 @@
         </dd>
 
     </dl>
+    <div class="col-md-2 col-md-offset-2 bg-info">
+        <upsert-cart-item params="cartItem: cartItem, showButton: true"></upsert-cart-item>
+    </div>
 </div>
-<p>
+
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to Parcels", "Index")
-</p>
+    @Html.ActionLink("Back to Parcels", "Index") |
+    @Html.ActionLink("Add to Cart", "AddToCart", new { id = Model.Id })
+</p>*@
+@Html.Partial("_CartItemForm")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval", "/Scripts/ViewModels/ParcelDetailViewModel.js",
+    "/Scripts/ViewModels/ParcelViewModel.js", "~/Scripts/ViewModels/CartItemViewModel.js")
+    <script>
+        var model = @Html.HtmlConvertToJson(Model);
+
+        var parcelDetailViewModel = new ParcelDetailViewModel(model);
+        ko.applyBindings(parcelDetailViewModel, document.getElementById("parcelDetails"));
+    </script>
+}

@@ -98,7 +98,14 @@
 <div>
     @Html.ActionLink("Back to Parcels", "Index")
 </div>
-
+@Html.Partial("_CartItemForm")
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval", "/Scripts/ViewModels/ParcelViewModel.js")
+    @Scripts.Render("~/bundles/jqueryval", "/Scripts/ViewModels/ParcelDetailViewModel.js", 
+    "/Scripts/ViewModels/ParcelViewModel.js", "~/Scripts/ViewModels/CartItemViewModel.js")
+<script>
+        var model = @Html.HtmlConvertToJson(Model);
+
+        var parcelDetailViewModel = new ParcelDetailViewModel(model);
+        ko.applyBindings(parcelDetailViewModel, document.getElementById("parcelDetails"));
+</script>
 }
