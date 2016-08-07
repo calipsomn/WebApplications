@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CargoWebApp.Enums
+namespace CargoWebApp.Enumerations
 {
     public enum StatusType
     {
