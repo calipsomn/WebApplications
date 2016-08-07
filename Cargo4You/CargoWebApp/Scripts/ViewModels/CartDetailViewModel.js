@@ -24,11 +24,11 @@
             url: '/api/cartitems',
             type: 'delete',
             contentType: 'application/json',
-            data: ko.toJSON(cartItem)
+            data: ko.toJSON(cartItem),
+            success: self.successfulDelete,
+            error: self.errorSave,
+            complete: function () { self.sending(false); }
         })
-        .success(self.successfulDelete)
-        .error(self.errorSave)
-        .complete(function () { self.sending(false) });
     };
 
     self.successfulDelete = function (data) {
