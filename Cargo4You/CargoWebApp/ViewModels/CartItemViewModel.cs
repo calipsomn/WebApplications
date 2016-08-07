@@ -15,7 +15,7 @@ namespace CargoWebApp.ViewModels
         [JsonProperty(PropertyName = "cartId")]
         public int CartId { get; set; }
 
-        [JsonProperty(PropertyName = "paecelId")]
+        [JsonProperty(PropertyName = "parcelId")]
         public int ParcelId { get; set; }
 
         [JsonProperty(PropertyName = "quantity")]

@@ -213,6 +213,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Constants\ParcelConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\CartItemsController.cs" />
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -227,7 +228,6 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Services\CartItemService.cs" />
     <Compile Include="Services\CartService.cs" />
-    <Compile Include="Services\ParcelService.cs" />
     <Compile Include="StaticHelpers\ParcelHelpers.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -364,7 +364,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Carts\Summary.cshtml" />
-    <Content Include="Views\Carts\View.cshtml" />
+    <Content Include="Views\Carts\Index.cshtml" />
     <Content Include="Views\Parcels\Delete.cshtml" />
     <Content Include="Views\Parcels\Create.cshtml" />
     <Content Include="Views\Parcels\Edit.cshtml" />
@@ -372,6 +372,7 @@
     <Content Include="Views\Parcels\List.cshtml" />
     <Content Include="Views\Parcels\Index.cshtml" />
     <Content Include="Views\Shared\_CartItemForm.cshtml" />
+    <Content Include="Scripts\knockout.custom.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

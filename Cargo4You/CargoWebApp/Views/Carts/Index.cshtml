@@ -10,7 +10,6 @@
     <table class="table table-bordered table-hover table-striped" style="display: none" data-bind="visible: cart.cartItems().length > 0">
         <tr>
             <th>Parcel</th>
-            <th>Unit Price</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>&nbsp;</th>
@@ -18,13 +17,12 @@
         <!-- ko foreach: { data: cart.cartItems, beforeRemove: fadeOut } -->
         <tr>
             <td>
-                <a href="@Url.Action("Details", "Parcels")" data-bind="appendToHref: parcel.id"></a>
+                <a href="@Url.Action("Edit", "Parcels")" data-bind="appendToHref: parcel.id">Details</a>
             </td>
-            <td data-bind="text: '$' + book.salePrice"></td>
             <td>
                 <upsert-cart-item params="cartItem: $data, showButton: false"></upsert-cart-item>
             </td>
-            <td data-bind="text: '$' + quantity.subTotal()"></td>
+            <td data-bind="text: '€' + quantity.subTotal()"></td>
             <td>
                 <button type="button" class="btn btn-danger" data-bind="click: $parent.deleteCartItem, visible: !$parent.sending()"><span class="glyphicon glyphicon-trash"></span></button>
             </td>

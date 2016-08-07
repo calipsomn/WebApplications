@@ -97,9 +97,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Parcels", "Index")
 </div>
 
+@Html.Partial("_CartItemForm")
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval", "/Scripts/ViewModels/ParcelViewModel.js")
 }

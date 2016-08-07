@@ -13,12 +13,16 @@ using AutoMapper;
 using CargoWebApp.ViewModels;
 using CargoWebApp.StaticHelpers;
 using Microsoft.AspNet.Identity;
+using CargoWebApp.Controllers.api;
+using CargoWebApp.Services;
 
 namespace CargoWebApp.Controllers
 {
+    [Authorize]
     public class ParcelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly CartService cartService = new CartService();
         MapperConfiguration config;
         IMapper mapper;
 
@@ -61,8 +65,6 @@ namespace CargoWebApp.Controllers
         }
 
         // POST: Parcels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,UserId,Weight,Width,Height,Depth,Fragile,Hazardous,Perishable")] ParcelViewModel parcelViewModel)
@@ -75,6 +77,14 @@ namespace CargoWebApp.Controllers
                 parcel.User = user;
                 db.Parcels.Add(parcel);
                 await db.SaveChangesAsync();
+                var cart = cartService.GetBySessionId(HttpContext.Session.SessionID);
+                CartItemsController cartItemsController = new CartItemsController();
+                cartItemsController.Post(new CartItemViewModel
+                {
+                    ParcelId = parcel.Id,
+                    Quantity = 1,
+                    CartId = cart.Id
+                });
                 return RedirectToAction("Index");
             }
 
@@ -97,8 +107,6 @@ namespace CargoWebApp.Controllers
         }
 
         // POST: Parcels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,UserId,Weight,Width,Height,Depth,Price,Fragile,Hazardous,Perishable")] ParcelViewModel parcelVieModel)

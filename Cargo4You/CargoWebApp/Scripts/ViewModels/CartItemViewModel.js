@@ -23,11 +23,11 @@
             url: '/api/cartitems',
             type: self.cartItem.id === undefined ? 'post' : 'put',
             contentType: 'application/json',
-            data: ko.toJSON(data)
-        })
-        .success(self.successfulSave)
-        .error(self.errorSave)
-        .complete(function () { self.sending(false) });
+            data: ko.toJSON(data),
+            success:self.successfulSave,
+            error:self.errorSave,
+            complete: function () { self.sending(false); }
+        });
     };
 
     self.successfulSave = function (data) {
