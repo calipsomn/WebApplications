@@ -105,7 +105,7 @@ namespace CargoWebApp.Controllers
                 CartId = cart.Id
             });
 
-            return View("~/Views/Carts/Index.cshtml");
+            return RedirectToAction("Index", "Carts");
         }
 
         // GET: Parcels/Edit/5
