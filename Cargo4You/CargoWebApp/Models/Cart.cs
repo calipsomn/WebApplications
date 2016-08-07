@@ -13,8 +13,10 @@ namespace CargoWebApp.Models
 
         [Index(IsUnique = true)]
         [StringLength(255)]
-        public string SessionId { get; set; }
+        public string UserName { get; set; }
 
         public virtual ICollection<CartItem> CartItems { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

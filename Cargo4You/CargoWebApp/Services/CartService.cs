@@ -11,25 +11,26 @@ namespace CargoWebApp.Services
     {
         private ApplicationDbContext dbContext = new ApplicationDbContext();
 
-        public Cart GetBySessionId(string sessionId)
-        {
-            var cart = dbContext.Carts.
-                Include("CartItems").
-                Where(c => c.SessionId == sessionId).
-                SingleOrDefault();
+        public Cart GetByUserName(string userName)
+        {          
 
-            cart = CreateCartIfItDoesntExist(sessionId, cart);
+            var cart = CreateCartIfItDoesntExist(userName);
 
             return cart;
         }
 
-        private Cart CreateCartIfItDoesntExist(string sessionId, Cart cart)
+        private Cart CreateCartIfItDoesntExist(string userName)
         {
-            if (null == cart)
+            var cart = dbContext.Carts.
+               Include("CartItems").
+               Where(c => c.UserName == userName).
+               SingleOrDefault();
+
+            if (cart == null)
             {
                 cart = new Cart
                 {
-                    SessionId = sessionId,
+                    UserName = userName,
                     CartItems = new List<CartItem>()
                 };
                 dbContext.Carts.Add(cart);

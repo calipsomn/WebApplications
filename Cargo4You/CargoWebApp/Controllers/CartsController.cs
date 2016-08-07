@@ -31,7 +31,7 @@ namespace CargoWebApp.Controllers
         // GET: Carts
         public ActionResult Index()
         {
-            var cart = cartService.GetBySessionId(HttpContext.Session.SessionID);
+            var cart = cartService.GetByUserName(User.Identity.Name);
 
             return View(
                 mapper.Map<Cart, CartViewModel>(cart)
@@ -41,7 +41,7 @@ namespace CargoWebApp.Controllers
         [ChildActionOnly]
         public PartialViewResult Summary()
         {
-            var cart = cartService.GetBySessionId(HttpContext.Session.SessionID);
+            var cart = cartService.GetByUserName(User.Identity.Name);
 
             return PartialView(
                 mapper.Map<Cart, CartViewModel>(cart)

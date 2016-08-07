@@ -79,7 +79,7 @@ namespace CargoWebApp.Controllers
                 parcel.User = user;
                 db.Parcels.Add(parcel);
                 await db.SaveChangesAsync();
-                var cart = cartService.GetBySessionId(HttpContext.Session.SessionID);
+                var cart = cartService.GetByUserName(User.Identity.Name);
                 CartItemsController cartItemsController = new CartItemsController();
                 cartItemsController.Post(new CartItemViewModel
                 {
@@ -96,7 +96,7 @@ namespace CargoWebApp.Controllers
         public async Task<ActionResult> AddToCart(int id)
         {
             var parcel = await db.Parcels.FindAsync(id);
-            var cart = cartService.GetBySessionId(HttpContext.Session.SessionID);
+            var cart = cartService.GetByUserName(User.Identity.Name);
             CartItemsController cartItemsController = new CartItemsController();
             var cartItemViewModel = cartItemsController.Post(new CartItemViewModel
             {
